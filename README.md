@@ -1,23 +1,23 @@
-# מטלה 2 - גרפים והעמסת אופרטורים
-
-במטלה הקודמת מימשתם את המחלקה `Graph.cpp` המאפשרת ייצוג של גרפים בעזרת מטריצת שכנויות. במטלה הזאת, אתם תרחיבו את המחלקה ותוסיפו תמיכה באופרטורים חשבוניים על גרפים.
-כאמור, הגרפים מיוצגים בעזרת מטריצת שכנויות, לכן כל האופרטורים צריכים להיות חוקיים עבור מטריצות (כמו שלמדתם בקורס אלגברה לינארית).
-
-אתם תצטרכו להוסיף את האופרטורים הבאים:
-
-- שישה אופרטורים חשבוניים: חיבור (+) הוספה (+=) פלוס אונרי (+), ושלושת האופרטורים המקבילים לחיסור (-). כאמור, חיבור/חיסור של שתי מטריצות מוגדר רק על מטריצות מאותו סדר גודל nXn. ניסיון לחבר/לחסר שתי מטריצות שלא מקיימות תנאי זה יגרום לזריקת שגיאה.
-- שישה אופרטורי השוואה: גדול, גדול-או-שווה, קטן, קטן-או-שווה, שווה, לא-שווה. לשם מטלה זו כללי השוואת גרפים הם כדלקמן:
-
-  1. גרפים G1 ו-G2 ייקראו שווים אם הם מאותו סדר גודל ומכילים את אותן הצלעות (והמשקלים של הצלעות זהים) או אם G1 לא גדול מ-G2 וגם G2 לא גדול מ-G1.
-  2. גרף G2 גדול מגרף G1 אם הגרף G1 מוכל ממש בגרף G2. אם אף גרף לא מוכל ממש בשני והגרפים לא שווים, אז גרף G2 גדול מגרף G1 אם מספר הצלעות ב-G2 גדול ממספר הצלעות ב-G1. אם בכל זאת מספר הצלעות זהה, אז הגרף G2 גדול מהגרף G1 אם המטריצה המייצגת של G2 בעלת סדר גודל גבוה יותר משל G1.
-
-- הגדלה ב-1 (++) והקטנה ב-1 (--) לפני ואחרי המספר. פעולה זו תגדיל או תקטין ב-1 את כל המשקלים של הצלעות בגרף.
-- הכפלה בסקלר שלם (`int`) - מכפיל את המשקל של כל הצלעות.
-- הכפלת גרפים - אנחנו מגדירים את פעולת הכפל בין גרף G1 לגרף G2 על ידי מכפלה של המטריצות המייצגות של שני הגרפים. התוצאה צריכה להיות מטריצה המייצגת גרף. ניסיון לבצע כפל בין גרפים בגדלים שונים צריך לזרוק שגיאה.
-- אופרטור פלט - הדפסה הגיונית של הגרף (צורת ההפדסה היא לשיקולכם).
-
-
-כמו כן, עליכם לכלול גם את הקובץ `Algorithms.cpp` מהמטלה הקודמת ולראות כיצד הפונקציות שהגדרתם בפעם הקודמת משתנות עכשיו. בנוסף לקבצים של המטלה אתם נדרשים להגיש גם קובץ README המתאר את אופן המימוש ואת החלוקה שביצעתם בקוד (סוג של מדריך משתמש).
-עליכם לכתוב בתחילת כל קובץ את מספר תעודת הזהות שלכם ואת המייל. אי עמידה בהנחיות תגרור הפחתה בציון.
-בהצלחה!
-
+# System programming- assignment 2
+This project extends the Graph class by adding operators to it.
+## Operators
+1.	Graph operator+(const Graph &other) const - addition of 2 graphs- returns a new graph which represent the addition of the two matrices (can be done only if the matrices are from the same size, else- throw exception).
+2.	Graph operator-(const Graph &other) const- subtraction of 2 graphs- returns the a new graph which represent the subtraction of the two matrices (can be done only if the matrices are from the same size , else- throw exception). 
+3.	Graph& operator+=(const Graph &other)- adds one graph to another- returns the graph  itself after adding the other graph to it  (can be done only if the matrices are from the same size, else- throw exception).
+4.	Graph& operator-=(const Graph &other)- subtract one graph from another- returns the graph itself after subtracting  the other graph from it  (can be done only if the matrices are from the same size, else- throw exception).
+5.	Graph operator+() const- unary plus- returns the graph as is.
+6.	Graph& operator-()- unary minus- returns the graph after switching the adjacency signs . it works by multiplying the graph by -1.  
+7.	Graph& operator++()- pre increment(++g)– the operator first increases the graph by 1 and then returns it.
+8.	Graph operator++(int)- post increment (g++)- the operator saves a new copy of the graph and then increases the graph itself by 1. It returns the copied graph (before the change).
+9.	Graph& operator--() - pre decrement(--g)- the operator first decreases the graph by 1 and then returns it.
+10.	Graph operator--(int)- post decrement (g--)- the operator saves a new copy of the graph and then decreases the graph itself by 1. It returns the copied graph (before the change).        
+11.	bool operator==(const Graph &other) const- equals check- the operator returns true if the matrices are equal, otherwise-false. The matrices are equal if they are from the same size (same vertex number) and all of weights are equal. 
+12.	 bool operator!=(const Graph &other) const- not equal check- the operator returns true if the matrices aren't equal, otherwise-false. It works by using the opposite of the return value of the == operator.
+13.	bool operator<(const Graph& other) const- smaller check- other is bigger if this graph is sub-matrix of it. If not and they are not equal, it's bigger if it's adjacency number of other  is bigger . if it is also equal, it's bigger if the number of vertices is bigger.
+14.	 bool operator<=(const Graph& &other) const- smaller or equal check - the operator returns true or false if the matrix itself is smaller or equal to the other. It works by using the < and == operators.
+15.	 bool operator>(const Graph& &other) const—bigger check- the operator returns true or false if the matrix itself is bigger than the other. It works by using the opposite of the return value of the < operator.
+16.	bool operator>=(const Graph& other) const- bigger or equal check- the operator returns true or false if the matrix itself is bigger or equal to the other. It works by using the opposite of the return value of the <= operator.
+17.	Graph operator*(const Graph other) const- multiplication of 2 graphs- the operator returns a new graph which is the multiplication of two graphs (can be done only if the matrices are from the same size).
+18.	Graph& operator*=( const int num)- multiplication of a graph by a number- the operator returns the graph itself after multiplying it by a number given.     
+19.	Graph& operator/=( const int num)- division operator- operator which divides the matrix by a number given and returns it. 
+20.	friend ostream& operator<<(ostream& os, const Graph& graph)-  output operator- the operator is a "friend" of the graph class and grants access to private functions and members in the class. It returns a reference to an output stream.
