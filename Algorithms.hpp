@@ -11,11 +11,11 @@ namespace ariel
 {
     class Algorithms {
         public:
-            static bool isConnected(Graph gr); 
-            static string shortestPath(Graph gr,int start, int end);
-            //static string isContainsCycle(Graph gr);
-            static string isBipartite(Graph gr);
-            static string negativeCycle(Graph gr);       
+            static bool isConnected(Graph& gr); 
+            static string shortestPath(Graph &gr,int start, int end);
+            static string isContainsCycle(Graph &gr);
+            static string isBipartite(Graph &gr);
+            static string negativeCycle(Graph &gr);       
     } ;
 }
 #endif
