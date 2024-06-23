@@ -75,7 +75,7 @@ bool Graph::getIsWeighed(){
 
 //operators
         Graph Graph:: operator+(const Graph &other)const{ // adding variables of two matrices into a new one
-                if(this->getGraph().size()!=other.getGraph().size() || this->getGraph()[0].size()!=other.getGraph()[0].size()) {// check if the matrices has same number of vertices
+                if(this->getGraph().size()!=other.getGraph().size()) {// check if the matrices has same number of vertices
                         throw invalid_argument("the matrices has different sizes");
                 }
                 Graph g;
@@ -89,7 +89,7 @@ bool Graph::getIsWeighed(){
         }
 
         Graph Graph:: operator-(const Graph &other) const { // like +
-                if(this->getGraph().size()!=other.getGraph().size() || this->getGraph()[0].size()!=other.getGraph()[0].size()  ) {
+                if(this->getGraph().size()!=other.getGraph().size()  ) {
                         throw invalid_argument("the matrices has different sizes");
                 }
                 Graph g;
@@ -103,7 +103,7 @@ bool Graph::getIsWeighed(){
         }
 
         Graph& Graph:: operator+=(const Graph &other) { // updating the graph by adding another graph to it
-                if(this->getGraph().size()!=other.getGraph().size() || this->getGraph()[0].size()!=other.getGraph()[0].size()  ) {
+                if(this->getGraph().size()!=other.getGraph().size()  ) {
                         throw invalid_argument("the matrices has different sizes");
                 }
                 for (size_t i=0; i<other.getVerNum(); i++){
@@ -115,7 +115,7 @@ bool Graph::getIsWeighed(){
         }
 
         Graph& Graph:: operator-=(const Graph &other){ // like +=
-                if(this->getGraph().size()!=other.getGraph().size() || this->getGraph()[0].size()!=other.getGraph()[0].size()  ) {
+                if(this->getGraph().size()!=other.getGraph().size()  ) {
                         throw invalid_argument("the matrices has different sizes");
                 }
                 for (size_t i=0; i<other.getVerNum(); i++){
@@ -131,6 +131,9 @@ bool Graph::getIsWeighed(){
         }
 
         Graph& Graph:: operator-() { // unary minus ( returns the graph after changing it signs)
+                if (this->getGraph().empty()) { 
+                        return *this;
+                }
                 for (size_t i=0; i<this->getVerNum(); i++){
                         for (size_t j=0; j<this->getVerNum(); j++){
                                 this->graph[i][j]= -1* this->getGraph()[i][j];

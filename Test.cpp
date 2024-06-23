@@ -424,4 +424,13 @@ TEST_CASE("Invalid operations")
     g6.loadGraph(graph3);
     CHECK_THROWS(g1 + g6);
 
+    ariel::Graph g7;
+    g7= {};
+    CHECK_THROWS(g1 + g7);
+    CHECK((-g7 ==g7)== true);
+    CHECK((++g7 == g7)==true);
+    CHECK((g7 <g1)== true);
+    CHECK((g7 >g1)== false);
+    CHECK((g7*=2)== g7);
+
 }
